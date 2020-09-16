@@ -75,23 +75,12 @@ class APIModel extends Database
         }
     }
 
-    function updateItem($id, $newItem)
+    function updateItem($newItem)
     {
         try {
             $query = $this->connect()->prepare('UPDATE alumnos SET nombre=:nombre WHERE id=:id');
-            if (
-                $query->execute([
-                    'id' => $id,
-                    'nombre' => $newItem->getNombre()
-                ])
-                && $query->rowCount()
-            ) {
-                return true;
-            } else {
-                return false;
-            }
+            return $query->execute(['id' => $newItem->getId(), 'nombre' => $newItem->getNombre()]);
         } catch (PDOException $e) {
-            echo json_encode(array('error' => 'Hubo un error al actualizar el alumno'));
             return false;
         }
     }

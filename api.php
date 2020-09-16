@@ -22,7 +22,7 @@ class API extends APIModel{
     function actualizarAlumno($id, $nombre){
         $nuevoAlumno = new Alumno($id, $nombre);
         
-        return $this->updateItem($id, $nuevoAlumno);
+        return $this->updateItem($nuevoAlumno);
     }
         
     function eliminarAlumno($id){
